@@ -102,6 +102,7 @@ class LoginPresenter extends BasePresenter
 	protected function createComponentGoogleLogin()
 	{
 		$dialog = new \Kdyby\Google\Dialog\LoginDialog($this->google);
+		$dialog->setLanguage('cs');
 		$dialog->onResponse[] = function (\Kdyby\Google\Dialog\LoginDialog $dialog) {
 			$google = $dialog->getGoogle();
 
