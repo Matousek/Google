@@ -20,6 +20,8 @@ use Nette\Http\UrlScript;
  */
 class LoginDialog extends AbstractDialog
 {
+	/** @var string */
+	private $language;
 
 	/**
 	 * Checks, if there is a user in storage and if not, it redirects to login dialog.
@@ -49,7 +51,22 @@ class LoginDialog extends AbstractDialog
 		$this->session->establishCSRFTokenState();
 		$auth->setState($this->session->state);
 
-		return new UrlScript($this->google->client->createAuthUrl());
+		$url = new UrlScript($this->google->client->createAuthUrl());
+		
+		if($this->language){
+			$url->appendQuery(['hl' => $this->language]);
+		}
+		
+		return $url;
+	}
+	
+	
+	/**
+	 * @param string $language (cs, en, etc...)
+	 */
+	public function setLanguage($language)
+	{
+		$this->language = $language;
 	}
 
 }

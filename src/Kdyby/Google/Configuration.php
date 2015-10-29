@@ -41,6 +41,11 @@ class Configuration extends Object
 	 * @var array
 	 */
 	public $scopes;
+	
+	/**
+	 * @var string
+	 */
+	public $language;
 
 	/**
 	 * @var array
